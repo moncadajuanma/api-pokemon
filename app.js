@@ -8,5 +8,7 @@ for (let index = 1; index < 21; index++) {
 }
 
 const mostrarDatos = (data) => {
-  console.log(data);
+  document.getElementsByClassName("list-pokemon")
+  const div = document.createElement("div")
+  div.appendChild("list-pokemon")
 };
