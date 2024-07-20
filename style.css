@@ -34,7 +34,6 @@
 
 ul {
     list-style-type: none;
-   
 }
 
 
@@ -78,10 +77,37 @@ header {
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
 }
 
+.list-pokemon {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem; 
+}
 
+.pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.info-pokemon{
+    display: flex;
+    flex-direction: column;
+}
 
+.name-pokemon {
+    display: flex;
+    flex-direction: row;
+}
 
+.types-pokemon {
+    display: flex;
+    flex-direction: row;
+}
+
+.stats-pokemon {
+    display: flex;
+    flex-direction: row;
+}
 
 .normal {
     background-color: var(--type-normal);
