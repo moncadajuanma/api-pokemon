@@ -1,6 +1,6 @@
 const url = "https://pokeapi.co/api/v2/pokemon/";
 
-for (let index = 1; index <= 1030; index++) {
+for (let index = 1; index <= 30; index++) {
   fetch(url + index)
     .then((response) => response.json())
     .then((data) => mostrarDatos(data))
@@ -13,11 +13,13 @@ const mostrarDatos = (data) => {
   
   let tipos = data.types.map((type) => 
     `<p class="${type.type.name} type">${type.type.name}</p>`);
+  
   tipos = tipos.join("");
 
   let powers = data.stats.map((stat) => 
     `<p class="stats">${stat.stat.name}: ${stat.base_stat}</p>`);
-    powers = powers.join("")
+  
+  powers = powers.join("")
 
   let id = data.id;
   let idString = id.toString();
