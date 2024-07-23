@@ -62,7 +62,7 @@ header {
 }
 
 .nav {
-  display: grid;
+  display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 1000px;
@@ -98,19 +98,19 @@ header {
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.25);
 }
 
-.list-pokemon {
+.lista-pokemon {
   display: grid;
   gap: 1rem;
 }
 
 @media screen and (min-width: 470px) {
-  .list-pokemon {
+  .lista-pokemon {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (min-width: 700px) {
-  .list-pokemon {
+  .lista-pokemon {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
@@ -130,8 +130,8 @@ header {
 }
 
 .pokemon:hover {
-  transform: scale(1.05);
-  transition: 0.3s;
+  transform: scale(1.005);
+  transition: 0.4s;
   box-shadow: 0 0 2rem 1rem rgba(0, 0, 0, 0.25);
 }
 
@@ -220,6 +220,25 @@ header {
   justify-content: center;
   text-align: center;
   gap: 0.2rem;
+}
+
+.pagin {
+  margin-block: 2rem;
+}
+
+.pagination {
+  gap: 3rem;
+}
+
+.info-page {
+  text-align: center;
+}
+
+.page-link:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  border: 1px solid rgb(96, 172, 216);
+
 }
 
 /* Asignacion de colores a las clases*/
