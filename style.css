@@ -112,6 +112,7 @@ header {
 @media screen and (max-width: 500px) {
   .btn-header {
     font-size: 0.6rem;
+    padding: 0.4rem;
   }
 
   .nav-list {
@@ -247,6 +248,11 @@ header {
 
 .pagin {
   margin-block: 2rem;
+}
+
+.contador p {
+  text-align: center;
+  font-weight: 600;
 }
 
 #pagin-down a img {
