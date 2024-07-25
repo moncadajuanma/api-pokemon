@@ -103,15 +103,38 @@ header {
   gap: 1rem;
 }
 
-@media screen and (min-width: 470px) {
+@media screen and (max-width: 766px) {
+  .btn-header {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .btn-header {
+    font-size: 0.5rem;
+  }
+
+  .nav-list {
+    gap: 0.5rem;
+  }
+
+}
+
+@media screen and (min-width: 480px) {
   .lista-pokemon {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 766px) {
   .lista-pokemon {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .lista-pokemon {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
