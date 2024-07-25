@@ -109,9 +109,9 @@ header {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
   .btn-header {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
   }
 
   .nav-list {
@@ -120,7 +120,7 @@ header {
 
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 500px) {
   .lista-pokemon {
     grid-template-columns: 1fr 1fr;
   }
