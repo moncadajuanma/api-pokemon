@@ -226,6 +226,10 @@ header {
   margin-block: 2rem;
 }
 
+#pagin-down a img {
+  transform: rotate(0.25turn);
+}
+
 .pagination {
   gap: 3rem;
 }
@@ -236,8 +240,9 @@ header {
 
 .page-link:hover {
   transform: scale(1.1);
-  transition: 0.3s;
+  transition: 0.4s;
   border: 1px solid rgb(96, 172, 216);
+  border-radius: 100vmax;
 
 }
 

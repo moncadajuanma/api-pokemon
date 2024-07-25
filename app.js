@@ -5,9 +5,9 @@ pokemonEnd = pokemonPorPagina;
 let btnPrevius = document.getElementById("previous");
 let btnNext = document.getElementById("next");
 
-const fetchpokemon = (pokemonStart, pokemonEnd) => {
+const  fetchPokemon = async (pokemonStart, pokemonEnd) => {
   for (let index = pokemonStart; index <= pokemonEnd; index++) {
-    fetch(url + index)
+    await fetch(url + index)
       .then((response) => response.json())
       .then((data) => mostrarDatos(data))
       .catch((error) => console.error("Error al obtener usuarios:", error));
@@ -36,8 +36,7 @@ const mostrarDatos = (data) => {
 
   div.innerHTML = `
     <p class="id-back">${id}</p>
-    <img src= ${
-      data.sprites.other["official-artwork"].front_default
+    <img src= ${data.sprites.other["official-artwork"].front_default
     } alt=" Pokemon ${data.name}" />
     <div class="info-pokemon">
       <div class="name-pokemon">
@@ -63,8 +62,14 @@ const previusPage = () => {
     clear();
     pokemonStart = pokemonStart - pokemonPorPagina;
     pokemonEnd = pokemonEnd - pokemonPorPagina;
-    fetchpokemon(pokemonStart, pokemonEnd);
-  } else alert("No hay mas pokemon");
+    document.addEventListener('load', fetchPokemon(pokemonStart, pokemonEnd));
+  } else {Swal.fire({
+    position: "center",
+    icon: "warning",
+    title: "Has llegado al comienzo de la lista de Pokemones",
+    showConfirmButton: false,
+    timer: 1000
+  });};
 };
 
 const nextPage = () => {
@@ -72,15 +77,21 @@ const nextPage = () => {
     clear();
     pokemonStart = pokemonStart + pokemonPorPagina;
     pokemonEnd = pokemonEnd + pokemonPorPagina;
-    fetchpokemon(pokemonStart, pokemonEnd);
-  } else alert("Fin de la Lista");
+    document.addEventListener('load', fetchPokemon(pokemonStart, pokemonEnd));
+  } else {Swal.fire({
+    position: "center",
+    icon: "warning",
+    title: "Has llegado al final de la lista de Pokemones",
+    showConfirmButton: false,
+    timer: 1000
+  });};
 };
 
 const clear = () => {
   document.getElementById("lista-pokemon").innerHTML = "";
 };
 
-fetchpokemon(pokemonStart, pokemonEnd);
+document.addEventListener('load', fetchPokemon(pokemonStart, pokemonEnd));
 
 btnNext.addEventListener("click", nextPage);
 btnPrevius.addEventListener("click", previusPage);
