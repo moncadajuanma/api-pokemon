@@ -4,8 +4,9 @@ let pokemonPorPagina = 20;
 pokemonEnd = pokemonPorPagina;
 let btnPrevius = document.getElementById("previous");
 let btnNext = document.getElementById("next");
+const p = document.createElement("p");
 
-const  fetchPokemon = async (pokemonStart, pokemonEnd) => {
+const fetchPokemon = async (pokemonStart, pokemonEnd) => {
   for (let index = pokemonStart; index <= pokemonEnd; index++) {
     await fetch(url + index)
       .then((response) => response.json())
@@ -14,6 +15,8 @@ const  fetchPokemon = async (pokemonStart, pokemonEnd) => {
   }
 };
 
+
+// Funcion que crea todas las tarjetas de pokemon
 const mostrarDatos = (data) => {
   const div = document.createElement("div");
   div.classList.add("pokemon");
@@ -30,10 +33,11 @@ const mostrarDatos = (data) => {
 
   let id = data.id;
   let idString = id.toString();
-
   if (idString.length == 1) id = "00" + idString;
   if (idString.length == 2) id = "0" + idString;
 
+
+// Creamos tarjeta del pokemon
   div.innerHTML = `
     <p class="id-back">${id}</p>
     <img src= ${data.sprites.other["official-artwork"].front_default
@@ -57,41 +61,52 @@ const mostrarDatos = (data) => {
   document.getElementById("lista-pokemon").append(div);
 };
 
+// Funcion para retroceder pagina
 const previusPage = () => {
   if (pokemonStart > 1) {
     clear();
     pokemonStart = pokemonStart - pokemonPorPagina;
     pokemonEnd = pokemonEnd - pokemonPorPagina;
     document.addEventListener('load', fetchPokemon(pokemonStart, pokemonEnd));
-  } else {Swal.fire({
-    position: "center",
-    icon: "warning",
-    title: "Has llegado al comienzo de la lista de Pokemones",
-    showConfirmButton: false,
-    timer: 1000
-  });};
+  } else {
+    Swal.fire({
+      position: "center",
+      icon: "warning",
+      title: "Has llegado al comienzo de la lista de Pokemones",
+      showConfirmButton: false,
+      timer: 1200
+    });
+  };
+  p.classList.add("contador");
+  document.getElementById("text-contador").append(p);
+  p.innerHTML = `Pokemon ${pokemonStart} de ${pokemonEnd}`
 };
 
+// Funcion para avanzar pagina
 const nextPage = () => {
   if (pokemonEnd <= 1025) {
     clear();
     pokemonStart = pokemonStart + pokemonPorPagina;
     pokemonEnd = pokemonEnd + pokemonPorPagina;
     document.addEventListener('load', fetchPokemon(pokemonStart, pokemonEnd));
-  } else {Swal.fire({
-    position: "center",
-    icon: "warning",
-    title: "Has llegado al final de la lista de Pokemones",
-    showConfirmButton: false,
-    timer: 1000
-  });};
+  } else {
+    Swal.fire({
+      position: "center",
+      icon: "warning",
+      title: "Has llegado al final de la lista de Pokemones",
+      showConfirmButton: false,
+      timer: 1200
+    });
+  };
+  p.classList.add("contador");
+  document.getElementById("text-contador").append(p);
+  p.innerHTML = `Pokemon ${pokemonStart} de ${pokemonEnd}`
 };
-
+// Funcion para limpiar pagina
 const clear = () => {
   document.getElementById("lista-pokemon").innerHTML = "";
 };
 
 document.addEventListener('load', fetchPokemon(pokemonStart, pokemonEnd));
-
 btnNext.addEventListener("click", nextPage);
 btnPrevius.addEventListener("click", previusPage);
