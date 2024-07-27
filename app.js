@@ -13,6 +13,7 @@ const fetchPokemon = async (pokemonStart, pokemonEnd) => {
       .then((data) => mostrarDatos(data))
       .catch((error) => console.error("Error al obtener usuarios:", error));
   }
+
 };
 
 
@@ -35,8 +36,6 @@ const mostrarDatos = (data) => {
   let idString = id.toString();
   if (idString.length == 1) id = "00" + idString;
   if (idString.length == 2) id = "0" + idString;
-
-
 // Creamos tarjeta del pokemon
   div.innerHTML = `
     <p class="id-back">${id}</p>
@@ -84,7 +83,7 @@ const previusPage = () => {
 
 // Funcion para avanzar pagina
 const nextPage = () => {
-  if (pokemonEnd <= 1025) {
+  if (pokemonEnd < 1025) {
     clear();
     pokemonStart = pokemonStart + pokemonPorPagina;
     pokemonEnd = pokemonEnd + pokemonPorPagina;
@@ -102,6 +101,7 @@ const nextPage = () => {
   document.getElementById("text-contador").append(p);
   p.innerHTML = `Pokemon ${pokemonStart} de ${pokemonEnd}`
 };
+
 // Funcion para limpiar pagina
 const clear = () => {
   document.getElementById("lista-pokemon").innerHTML = "";
