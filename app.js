@@ -140,14 +140,10 @@ btnHeader.forEach((btn) =>
       fetch(url + index)
         .then((response) => response.json())
         .then((data) => {
-          const tipos = data.types.map(
-            (type) => type.type.name
-          );
+          const tipos = data.types.map((type) => type.type.name);
           if (btnId === "ver-todos") {
             mostrarDatos(data);
-          }
-          else 
-          if (tipos.some(tipo => tipo.includes(btnId))){
+          } else if (tipos.some((tipo) => tipo.includes(btnId))) {
             mostrarDatos(data);
           }
         })
