@@ -12,7 +12,7 @@ const fetchPokemon = async (pokemonStart, pokemonEnd) => {
     await fetch(url + index)
       .then((response) => response.json())
       .then((data) => mostrarDatos(data))
-      .catch((error) => alert("Error al obtener usuarios: " + error));
+      // .catch((error) => alert("Error al obtener usuarios: " + error));
   }
 };
 
@@ -147,7 +147,7 @@ btnHeader.forEach((btn) =>
             mostrarDatos(data);
           }
         })
-        .catch((error) => alert("Error al obtener usuarios: " + error));
+        // .catch((error) => alert("Error al obtener usuarios: " + error));
     }
   })
 );
