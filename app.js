@@ -132,15 +132,15 @@ btnPrevius.addEventListener("click", previusPage);
 btnHeader.forEach((btn) =>
   btn.addEventListener("click", (event) => {
     const btnId = event.currentTarget.id;
-    console.log(btnId);
 
-    document.getElementById("lista-pokemon").innerHTML = "";
+    clear();
 
     for (let index = pokemonStart; index <= pokemonEnd; index++) {
       fetch(url + index)
         .then((response) => response.json())
         .then((data) => {
-          const tipos = data.types.map((type) => type.type.name);
+          const tipos = data.types.map((type) => type.type.name)
+
           if (btnId === "ver-todos") {
             mostrarDatos(data);
           } else if (tipos.some((tipo) => tipo.includes(btnId))) {
