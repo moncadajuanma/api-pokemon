@@ -72,6 +72,7 @@ const previusPage = () => {
       "DOMContentLoad",
       fetchPokemon(pokemonStart, pokemonEnd)
     );
+    waitTime()
   } else {
     btnPrevius.disable = true;
     btnNext.disable = false;
@@ -90,6 +91,7 @@ const nextPage = () => {
       "DOMContentLoad",
       fetchPokemon(pokemonStart, pokemonEnd)
     );
+    waitTime();
   } else {
     btnPrevius.disable = false;
     btnNext.disable = true;
@@ -114,15 +116,13 @@ const clear = () => {
 };
 
 // Inicializa contador de pagina
-p.innerHTML = `Pokemon del ${pokemonStart} al ${pokemonEnd}`;
+p.innerHTML = `Pokemon ${pokemonStart} al ${pokemonEnd}`;
 p.classList.add("contador");
 document.getElementById("text-contador").append(p);
 
+
 // Inicializa carga de pokemon
-document.addEventListener(
-  "DOMContentLoad",
-  fetchPokemon(pokemonStart, pokemonEnd)
-);
+document.addEventListener("DOMContentLoad", fetchPokemon(pokemonStart, pokemonEnd));
 
 // Eventos de captura de botones de avanzar y retroceder pagina
 btnNext.addEventListener("click", nextPage);
@@ -151,3 +151,28 @@ btnHeader.forEach((btn) =>
     }
   })
 );
+
+function waitTime() {
+  let timerInterval;
+  Swal.fire({
+    title: `Cargando Pokemon ${pokemonStart} al ${pokemonEnd}!`,
+    // html: "I will close in <b></b> milliseconds.",
+    timer: 1500,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+      const timer = Swal.getPopup().querySelector("b");
+      timerInterval = setInterval(() => {
+        timer.textContent = `${Swal.getTimerLeft()}`;
+      }, 100);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+    }
+  }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+      // console.log("I was closed by the timer");
+    }
+  });
+}
